@@ -3,32 +3,29 @@ defmodule ShittyLinqEx do
   Documentation for `ShittyLinqEx`.
   """
 
-  #The append() function
+  @doc """
+  Places a new element at the end of an existing list
   
-    @doc """
-    Places a new element at the end of an existing list. `list` is 
-    any list or set of numeric elements and `new` is a new numeric element
-    the user wants to add to the set.
-    ##Examples
+  ## Examples
   
     iex> a = [1, 2, 3]
-    iex> b = shittyLinqEx.append(a, 4)
+    iex> b = ShittyLinqEx.append(a, 4)
     [1, 2, 3, 4]
-    iex> c = shittyLinqEx.append(b, 327)
+    iex> c = ShittyLinqEx.append(b, 327)
     [1, 2, 3, 4, 327]
-    """
+  """
 
   def append(list, new) do
     list ++ [new]
   end
-
-    @doc """
+  
+  @doc """
   Finds the sum of all values in a list with numeric elements.
   
-  ##Examples
+  ## Examples
   
     iex> list = [1, 2, 3]
-    iex> shittyLinqEx.sum(list)
+    iex> ShittyLinqEx.sum(list)
     6
   """
 
@@ -37,13 +34,9 @@ defmodule ShittyLinqEx do
   end
     
   def sum([h|t]) do
-      h + sum(t)
+    h + sum(t)
   end
-
-  def where(source, predicate) when is_list(source) do
-    where_list(source, predicate)
-  end
-
+  
   @doc """
   Filters a sequence of values based on a predicate.
   Where `source` is an enumerable to filter.
@@ -54,6 +47,9 @@ defmodule ShittyLinqEx do
     iex> where([1, 2, 3], fn x -> rem(x, 2) == 0 end)
     [2]
   """
+  def where(source, predicate) when is_list(source) do
+    where_list(source, predicate)
+  end
 
   defp where_list([head | tail], fun) do
     case fun.(head) do
@@ -65,5 +61,5 @@ defmodule ShittyLinqEx do
   defp where_list([], _fun) do
     []
   end
-
+  
 end
