@@ -75,4 +75,10 @@ defmodule ShittyLinqExTest do
       assert ShittyLinqEx.intersect([6, 42, 2], [73, 37, 1]) == []
     end
   end
+  
+  describe "union/1" do
+    test "combines elements of two sets and excludes duplicates" do
+      assert ShittyLinqAu.union([1, 37, 73], [1, 37, 97, 79]) == [1, 37, 73, 97, 79]
+    end
+  end
 end
